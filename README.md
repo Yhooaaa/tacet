@@ -20,13 +20,12 @@ only facts about them (breach name, date, kinds of data exposed).
 
 ```bash
 npm install
-cp .env.example .env.local
 npm run dev
 ```
 
-With `NOISE_DEV_MODE=1` verification codes are shown on screen instead of being sent, so no mail or
-SMS provider is needed locally. `DATABASE_URL` must point to a Postgres database; the schema is
-created on first start.
+Put the variables from the table below into `.env.local`. With `NOISE_DEV_MODE=1` verification
+codes are shown on screen instead of being sent, so no mail or SMS provider is needed locally.
+`DATABASE_URL` must point to a Postgres database; the schema is created on first start.
 
 ```bash
 npm run typecheck
@@ -73,7 +72,7 @@ events back (`queue`, `step`, `finding`, `report`, `done`). Steps run in paralle
 
 Everything that costs resources is bounded: scans take slots and wait in a queue when the server is
 busy, outbound requests have global and per-host limits, and closing the page cancels the scan.
-Limits are configured through the `NOISE_*` variables in `.env.example`.
+Limits are configured through `NOISE_*` environment variables.
 
 ## Environment
 
