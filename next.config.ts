@@ -35,6 +35,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   outputFileTracingIncludes: {
     "/api/scan": ["./node_modules/@sparticuz/chromium/bin/**"],
+    "/opengraph-image": ["./src/components/layout/mark.png"],
   },
   async headers() {
     return [

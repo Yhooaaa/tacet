@@ -1,20 +1,18 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 export const alt = "Tacet: see what the internet knows about you";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function Image() {
+  const mark = await readFile(join(process.cwd(), "src/components/layout/mark.png"));
   return new ImageResponse(
     (
       <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: 80, background: "#000", color: "#fff" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <svg width="56" height="56" viewBox="0 0 20 20" fill="#fff">
-            <circle cx="6" cy="10" r="4.5" />
-            <circle cx="13.5" cy="6" r="1.6" opacity="0.75" />
-            <circle cx="14" cy="13.5" r="1.3" opacity="0.55" />
-            <circle cx="18" cy="9.5" r="1" opacity="0.4" />
-          </svg>
+          <img src={`data:image/png;base64,${mark.toString("base64")}`} width={66} height={56} alt="" />
           <span style={{ fontSize: 44, fontWeight: 600, letterSpacing: -1 }}>Tacet</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
